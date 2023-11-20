@@ -16,6 +16,9 @@ public class GetUserFunctionHandler extends FunctionInvoker<String, UserDTO> {
             @HttpTrigger(name = "request", methods = {HttpMethod.GET}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<String>> request,
             ExecutionContext context) {
         String userId = request.getQueryParameters().get("userId");
+        if (userId == null){
+            userId = "";
+        }
 
         context.getLogger().info(userId);
         return request
