@@ -12,10 +12,6 @@ import static it.cattolica.genius.score.dto.Response.CodeEnum.OK;
 @Component
 public class UserService {
 
-    public UserDTO getUser(String userId) {
-        return UserDTO.builder().userId(userId).build();
-    }
-
     public ResponseEntity<UserScoreResponse> getUserscore(String userId) {
         UserScoreResponse r = new UserScoreResponse();
         UserScore us = new UserScore();
