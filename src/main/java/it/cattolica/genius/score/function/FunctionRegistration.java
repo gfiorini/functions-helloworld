@@ -1,11 +1,13 @@
 package it.cattolica.genius.score.function;
 
 
+import it.cattolica.genius.score.dto.UserScoreResponse;
 import it.cattolica.genius.score.model.User;
 import it.cattolica.genius.score.model.UserDTO;
 import it.cattolica.genius.score.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.ResponseEntity;
 import reactor.core.publisher.Mono;
 
 import java.util.function.Function;
@@ -13,16 +15,6 @@ import java.util.function.Function;
 @Configuration
 public class FunctionRegistration {
 
-    /*
-        il nome del bean deve essere uguale al nome della function a meno di mettere un qualifier al bean,
-        ad es:
-
-        @Bean("userscore")
-        public Function<String, UserDTO> aaaaaa() {
-            return userId -> userService.getUser(userId);
-        }
-
-     */
     private UserService userService;
 
     public FunctionRegistration(UserService userService) {
@@ -35,9 +27,10 @@ public class FunctionRegistration {
     }
 
     @Bean("userscore")
-    public Function<String, UserDTO> getUserscore() {
-        return userId -> userService.getUser(userId);
+    public Function<String, ResponseEntity<UserScoreResponse>> getUserscore() {
+        return userId -> userService.getUserscore(userId);
     }
+
 
 
 }
