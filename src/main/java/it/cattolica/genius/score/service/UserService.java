@@ -1,7 +1,9 @@
 package it.cattolica.genius.score.service;
 
+import it.cattolica.genius.score.model.User;
 import it.cattolica.genius.score.model.UserDTO;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Mono;
 
 @Component
 public class UserService {
@@ -14,4 +16,7 @@ public class UserService {
     public UserDTO getUser(String userId) {
         return UserDTO.builder().userId(userId).build();
     }
+
+
+
 }

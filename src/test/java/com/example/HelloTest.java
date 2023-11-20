@@ -1,16 +1,6 @@
 package com.example;
 
 
-import com.microsoft.azure.functions.ExecutionContext;
-import it.cattolica.genius.score.Hello;
-import it.cattolica.genius.score.model.Greeting;
-import it.cattolica.genius.score.model.User;
-import org.junit.jupiter.api.Test;
-import org.springframework.cloud.function.adapter.azure.FunctionInvoker;
-import reactor.core.publisher.Mono;
-
-import java.util.logging.Logger;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class HelloTest {
