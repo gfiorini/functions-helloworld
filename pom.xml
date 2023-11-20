@@ -21,18 +21,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-
         <azure.functions.maven.plugin.version>1.22.0</azure.functions.maven.plugin.version>
         <azure.functions.java.library.version>3.0.0</azure.functions.java.library.version>
         <spring.cloud.function.dependencies>4.0.0</spring.cloud.function.dependencies>
-
-        <!-- customize those five properties. The functionAppName should be unique across Azure -->
-        <functionResourceGroup>my-spring-function-resource-group</functionResourceGroup>
-        <functionAppServicePlanName>my-spring-function-service-plan</functionAppServicePlanName>
-        <functionAppName>my-spring-function</functionAppName>
-        <functionAppRegion>westeurope</functionAppRegion>
-        <functionPricingTier>Y1</functionPricingTier>
-
+        <functionAppName>fn-app-hello-world</functionAppName>
         <start-class>com.example.DemoApplication</start-class>
     </properties>
 

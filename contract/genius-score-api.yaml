@@ -1,0 +1,561 @@
+openapi: 3.0.3
+
+info:
+  version: 0.1.7
+  title: Genius 2.0 - Score APIs
+  description: Genius Score APIs - Draft version
+  termsOfService: www.cattolica.it
+
+servers:
+  - url: http://localhost/api/v1
+
+tags:
+  - name: user
+    description: User Score APIs
+  - name: publication
+    description: Pubblication Score APIs
+
+paths:
+  /user/score:
+    get:
+      summary: User score
+      operationId: userScore
+      description: Request of a user score
+      security:
+        - certificateAuth: []
+      tags:
+        - user
+      parameters:
+        - name: userId
+          in: query
+          description: User Identifier
+          required: true
+          schema:
+            type: string
+          example:
+            2605
+      responses:
+        200:
+          description: A User with related score
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserScoreResponse'
+              example:
+                userScore:
+                  userId: 2605
+                  score: 140.1
+                response:
+                  code: OK
+                  description: Success
+        400:
+          description: Bad request, wrong or missing parameters
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                code: 400
+                message: Bad request. Missing 'userId' parameter
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                code: 401
+                message: Unauthorized user access
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /user/score/query:
+    post:
+      summary: User Score Query
+      operationId: userScoreQuery
+      description: Request of users scores beloging to the a specific Tender
+      security:
+        - certificateAuth: []
+
+      tags:
+        - user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserScoreQueryRequest"
+            examples:
+              Example1:
+                value:
+                  userIds:
+                    - "2605"
+              Example2:
+                value:
+                  userIds:
+                    - "2605"
+                    - "3127"
+      responses:
+        200:
+          description: A User with related score
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserScoreQueryResponse"
+              examples:
+                OK:
+                  value:
+                    userScores:
+                      - userScore:
+                          userId: 2605
+                          score: 140.1
+                        response:
+                          code: OK
+                          description: Success
+                OK - With NA User:
+                  value:
+                    userScores:
+                      - userScore:
+                          userId: 2605
+                          score: 140.1
+                        response:
+                          code: OK
+                          description: Success
+                      - userScore:
+                          userId: 3127
+                          score: -1
+                        response:
+                          code: ERR_NOT_ATTACHABLE
+                          description: User Not Attachable
+                KO - Application Error:
+                  value:
+                    error:
+                      code: ERR_GENERIC
+                      message: Application Error
+
+
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                code: 400
+                message: Bad request. Wrong 'score' parameter format
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                code: 401
+                message: Unauthorized
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                code: 500
+                message: Internal server error
+
+  /publication/score:
+    get:
+      summary: Publication score
+      operationId: pubScore
+      description: Request of a pulication score related to a user
+      security:
+        - certificateAuth: []
+
+      tags:
+        - publication
+      parameters:
+        - name: tenderCode
+          in: query
+          description: Tender Code
+          required: true
+          schema:
+            type: string
+        - name: locationCode
+          in: query
+          description: Teneder Location
+          required: true
+          schema:
+            type: string
+        - name: pubId
+          in: query
+          description: Publication Identifier
+          required: true
+          schema:
+            type: string
+        - name: userId
+          in: query
+          description: User Identifier
+          required: true
+          schema:
+            type: string
+        - name: reassessement
+          in: query
+          description: Reassessement Flag
+          required: false
+          schema:
+            type: string
+        - name: quartile
+          in: query
+          description: |
+            Publication quartile.
+          required: false
+          schema:
+            type: string
+            enum:
+              - Q1
+              - Q2
+              - Q3
+              - Q4
+        - name: multiplier
+          in: query
+          description: |
+            Multiply factor.
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: A Publication with related score
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userScore:
+                    $ref: "#/components/schemas/PubScore"
+                  response:
+                    $ref: "#/components/schemas/Response"
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                code: 400
+                message: Bad request. Missing 'tenderCode' attribute
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                code: -13
+                message: Unauthorized
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                code: -12
+                message: Internal server error
+
+  /publication/score/query:
+    post:
+      summary: Publication Score Query
+      operationId: PubScoreQuery
+      description: |
+        Request of pulications scores related to users and beloging 
+        to a specific Tender
+      security:
+        - certificateAuth: []
+      tags:
+        - publication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PubScoreQueryRequest"
+
+            examples:
+              Milan:
+                value:
+                  tenderCode: D.1
+                  locationCode: "01"
+                  pubScoreParams:
+                    - pubId: 10807/163015
+                      userId: 2605
+                      reassessement: 0
+              Rome:
+                value:
+                  tenderCode: D.1
+                  locationCode: "02"
+                  pubScoreParams:
+                    - pubId: 10807/122296
+                      userId: "3951"
+                      quartile: Q4
+                      multiplier: 2
+
+      responses:
+        200:
+          description: Scores of publications related to given users
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PubScoreQueryResponse"
+              examples:
+                Milan:
+                  value:
+                    pubScores:
+                      - pubScore:
+                          pubId: 10807/163015
+                          userId: 2605
+                          score: 15.77
+                        response:
+                          code: OK
+                      - pubScore:
+                          pubId: 10807/163016
+                          userId: 3607
+                          score: -1
+                        response:
+                          code: ERR_NOT_ATTACHABLE
+                          description: Not Attachable Publication
+                Rome:
+                  value:
+                    pubScores:
+                      - pubScore:
+                          pubId: 10807/122296
+                          userId: 3951
+                          score: 0.6
+                        response:
+                          code: OK
+                          description: string
+                Error:
+                  value:
+                    error:
+                      code: -99
+                      message: Application Error
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                code: 400
+                message: Bad request. Missing 'pubId' parameter
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                code: 401
+                message: Unauthorized user access
+        500:
+          description: Internal server Rome
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                code: 500
+                message: Internal server error
+components:
+  schemas:
+
+    UserScoreResponse:
+      type: object
+      properties:
+        userScore:
+          $ref: "#/components/schemas/UserScore"
+        response:
+          $ref: "#/components/schemas/Response"
+
+    UserScoreQueryRequest:
+      type: object
+      required:
+        - userIds
+      properties:
+        userIds:
+          type: array
+          items:
+            type: string
+
+    UserScoreQueryResponse:
+      title: UserScoreQueryResponse
+      type: object
+      required:
+        - userScores
+        - response
+      properties:
+        userScores:
+          type: array
+          items:
+            type: object
+            properties:
+              userScore:
+                $ref: '#/components/schemas/UserScore'
+              response:
+                $ref: '#/components/schemas/Response'
+        error:
+          $ref: '#/components/schemas/Error'
+
+    PubScoreParam:
+      required:
+        - pubId
+        - userId
+      properties:
+        pubId:
+          type: string
+          description: Pubblication Identifier
+        userId:
+          type: string
+          description: User Identifier
+        reassessement:
+          type: integer
+          format: int32
+          description: |
+            Reassesement value. 
+            It must be filled only if pubblication has more that 4 authors
+        quartile:
+          type: string
+          enum:
+            - Q1
+            - Q2
+            - Q3
+            - Q4
+          description: |
+            Quartile value. 
+            It must be filled only if locationCode=02 (Rome area tenders)
+        multiplier:
+          type: integer
+          format: int32
+          description: |
+            Multiplie value.
+            It must be filled only if locationCode=02 (Rome area tenders)
+
+    PubScoreResponse:
+      type: object
+      properties:
+        userScore:
+          $ref: "#/components/schemas/PubScore"
+        response:
+          $ref: "#/components/schemas/Response"
+
+    PubScoreQueryRequest:
+      properties:
+        tenderCode:
+          type: string
+          description: |
+            Tender Line Code
+        locationCode:
+          type: string
+          enum:
+            - 01
+            - 02
+          description: |
+            Location Code of the tender:
+              01: Milan Area
+              02: Rome Area
+        pubScoreParams:
+          type: array
+          items:
+            $ref: '#/components/schemas/PubScoreParam'
+
+    PubScoreQueryResponse:
+      title: PubScoreQueryResponse
+      type: object
+      required:
+        - pubScores
+      properties:
+        pubScores:
+          type: array
+          items:
+            type: object
+            properties:
+              pubScore:
+                $ref: '#/components/schemas/PubScore'
+              response:
+                $ref: '#/components/schemas/Response'
+        error:
+          $ref: '#/components/schemas/Error'
+
+    UserScore:
+      required:
+        - userId
+        - score
+        - response
+      properties:
+        userId:
+          type: string
+        score:
+          type: number
+          format: double
+          description: |
+            User score. In case the error the score is set to -1
+
+    PubScore:
+      required:
+        - pubId
+        - userId
+        - score
+        - response
+      properties:
+        pubId:
+          type: string
+          description: Pubblication Identifier
+        userId:
+          type: string
+          description: User Identifier
+        score:
+          type: number
+          format: double
+          description: |
+            Publication score. In case of error the score is set to -1.0
+
+    Response:
+      type: object
+      required:
+        - code
+      properties:
+        code:
+          type: string
+          enum:
+            - OK
+            - ERR_NOT_ATTACHABLE
+            - ERR_WRONG_REASSSESSMENT
+            - ERR_WRONG_QUARTILE
+            - ERR_WRONG_MULTIPLY
+            - ERR_NOT_FOUND
+            - ERR_GENERIC
+        description:
+          type: string
+
+    Error:
+      required:
+        - code
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Error description
+
+  securitySchemes:
+    certificateAuth:
+      type: apiKey
+      in: header
+      name: X-Client-Certificate
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key

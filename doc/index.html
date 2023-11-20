@@ -1,0 +1,670 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Genius 2.0 - Score APIs</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>Genius 2.0 - Score APIs</h1>
+    <div class="app-desc">Genius Score APIs - Draft version</div>
+    
+    
+    <div class="app-desc">Version: 0.1.7</div>
+    <div class="app-desc">BasePath:/api/v1</div>
+    <div class="license-info">false</div>
+    <div class="license-url">false</div>
+  <h2>Access</h2>
+    <ol>
+      <li>APIKey KeyParamName:X-API-Key KeyInQuery:false KeyInHeader:true</li>
+      <li>APIKey KeyParamName:X-Client-Certificate KeyInQuery:false KeyInHeader:true</li>
+    </ol>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Publication">Publication</a></h4>
+  <ul>
+  <li><a href="#pubScore"><code><span class="http-method">get</span> /publication/score</code></a></li>
+  <li><a href="#pubScoreQuery"><code><span class="http-method">post</span> /publication/score/query</code></a></li>
+  </ul>
+  <h4><a href="#User">User</a></h4>
+  <ul>
+  <li><a href="#userScore"><code><span class="http-method">get</span> /user/score</code></a></li>
+  <li><a href="#userScoreQuery"><code><span class="http-method">post</span> /user/score/query</code></a></li>
+  </ul>
+
+  <h1><a name="Publication">Publication</a></h1>
+  <div class="method"><a name="pubScore"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /publication/score</code></pre></div>
+    <div class="method-summary">Publication score (<span class="nickname">pubScore</span>)</div>
+    <div class="method-notes">Request of a pulication score related to a user</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">tenderCode (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Tender Code default: null </div><div class="param">locationCode (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Teneder Location default: null </div><div class="param">pubId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Publication Identifier default: null </div><div class="param">userId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; User Identifier default: null </div><div class="param">reassessement (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Reassessement Flag default: null </div><div class="param">quartile (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Publication quartile. default: null </div><div class="param">multiplier (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Multiply factor. default: null </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#pubScore_200_response">pubScore_200_response</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "response" : {
+    "code" : "OK",
+    "description" : "description"
+  },
+  "userScore" : {
+    "score" : 0.8008281904610115,
+    "pubId" : "pubId",
+    "userId" : "userId"
+  }
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    A Publication with related score
+        <a href="#pubScore_200_response">pubScore_200_response</a>
+    <h4 class="field-label">400</h4>
+    Bad request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">500</h4>
+    Internal server error
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="pubScoreQuery"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /publication/score/query</code></pre></div>
+    <div class="method-summary">Publication Score Query (<span class="nickname">pubScoreQuery</span>)</div>
+    <div class="method-notes">Request of pulications scores related to users and beloging
+to a specific Tender</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">PubScoreQueryRequest <a href="#PubScoreQueryRequest">PubScoreQueryRequest</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#PubScoreQueryResponse">PubScoreQueryResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "pubScores" : [ {
+    "pubScore" : {
+      "score" : 0.8008281904610115,
+      "pubId" : "pubId",
+      "userId" : "userId"
+    },
+    "response" : {
+      "code" : "OK",
+      "description" : "description"
+    }
+  }, {
+    "pubScore" : {
+      "score" : 0.8008281904610115,
+      "pubId" : "pubId",
+      "userId" : "userId"
+    },
+    "response" : {
+      "code" : "OK",
+      "description" : "description"
+    }
+  } ],
+  "error" : {
+    "code" : "code",
+    "message" : "message"
+  }
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Scores of publications related to given users
+        <a href="#PubScoreQueryResponse">PubScoreQueryResponse</a>
+    <h4 class="field-label">400</h4>
+    Bad request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">500</h4>
+    Internal server Rome
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="User">User</a></h1>
+  <div class="method"><a name="userScore"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /user/score</code></pre></div>
+    <div class="method-summary">User score (<span class="nickname">userScore</span>)</div>
+    <div class="method-notes">Request of a user score</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">userId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; User Identifier default: null </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#UserScoreResponse">UserScoreResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "response" : {
+    "code" : "OK",
+    "description" : "description"
+  },
+  "userScore" : {
+    "score" : 0.8008281904610115,
+    "userId" : "userId"
+  }
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    A User with related score
+        <a href="#UserScoreResponse">UserScoreResponse</a>
+    <h4 class="field-label">400</h4>
+    Bad request, wrong or missing parameters
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">500</h4>
+    Internal server error
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="userScoreQuery"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /user/score/query</code></pre></div>
+    <div class="method-summary">User Score Query (<span class="nickname">userScoreQuery</span>)</div>
+    <div class="method-notes">Request of users scores beloging to the a specific Tender</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">UserScoreQueryRequest <a href="#UserScoreQueryRequest">UserScoreQueryRequest</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#UserScoreQueryResponse">UserScoreQueryResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "userScores" : [ {
+    "response" : {
+      "code" : "OK",
+      "description" : "description"
+    },
+    "userScore" : {
+      "score" : 0.8008281904610115,
+      "userId" : "userId"
+    }
+  }, {
+    "response" : {
+      "code" : "OK",
+      "description" : "description"
+    },
+    "userScore" : {
+      "score" : 0.8008281904610115,
+      "userId" : "userId"
+    }
+  } ],
+  "error" : {
+    "code" : "code",
+    "message" : "message"
+  }
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    A User with related score
+        <a href="#UserScoreQueryResponse">UserScoreQueryResponse</a>
+    <h4 class="field-label">400</h4>
+    Bad request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">500</h4>
+    Internal server error
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#Error"><code>Error</code> - </a></li>
+    <li><a href="#PubScore"><code>PubScore</code> - </a></li>
+    <li><a href="#PubScoreParam"><code>PubScoreParam</code> - </a></li>
+    <li><a href="#PubScoreQueryRequest"><code>PubScoreQueryRequest</code> - </a></li>
+    <li><a href="#PubScoreQueryResponse"><code>PubScoreQueryResponse</code> - PubScoreQueryResponse</a></li>
+    <li><a href="#PubScoreQueryResponse_pubScores_inner"><code>PubScoreQueryResponse_pubScores_inner</code> - </a></li>
+    <li><a href="#PubScoreResponse"><code>PubScoreResponse</code> - </a></li>
+    <li><a href="#Response"><code>Response</code> - </a></li>
+    <li><a href="#UserScore"><code>UserScore</code> - </a></li>
+    <li><a href="#UserScoreQueryRequest"><code>UserScoreQueryRequest</code> - </a></li>
+    <li><a href="#UserScoreQueryResponse"><code>UserScoreQueryResponse</code> - UserScoreQueryResponse</a></li>
+    <li><a href="#UserScoreQueryResponse_userScores_inner"><code>UserScoreQueryResponse_userScores_inner</code> - </a></li>
+    <li><a href="#UserScoreResponse"><code>UserScoreResponse</code> - </a></li>
+    <li><a href="#pubScore_200_response"><code>pubScore_200_response</code> - </a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="Error"><code>Error</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">code </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Error code </div>
+<div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Error description </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="PubScore"><code>PubScore</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">pubId </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Pubblication Identifier </div>
+<div class="param">userId </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> User Identifier </div>
+<div class="param">score </div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span> Publication score. In case of error the score is set to -1.0 format: double</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="PubScoreParam"><code>PubScoreParam</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">pubId </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Pubblication Identifier </div>
+<div class="param">userId </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> User Identifier </div>
+<div class="param">reassessement (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Reassesement value.
+It must be filled only if pubblication has more that 4 authors format: int32</div>
+<div class="param">quartile (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Quartile value.
+It must be filled only if locationCode=02 (Rome area tenders) </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">Q1</div><div class="param-enum">Q2</div><div class="param-enum">Q3</div><div class="param-enum">Q4</div>
+<div class="param">multiplier (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Multiplie value.
+It must be filled only if locationCode=02 (Rome area tenders) format: int32</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="PubScoreQueryRequest"><code>PubScoreQueryRequest</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">tenderCode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Tender Line Code </div>
+<div class="param">locationCode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Location Code of the tender:
+01: Milan Area
+02: Rome Area </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">1</div><div class="param-enum">2</div>
+<div class="param">pubScoreParams (optional)</div><div class="param-desc"><span class="param-type"><a href="#PubScoreParam">array[PubScoreParam]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="PubScoreQueryResponse"><code>PubScoreQueryResponse</code> - PubScoreQueryResponse</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">pubScores </div><div class="param-desc"><span class="param-type"><a href="#PubScoreQueryResponse_pubScores_inner">array[PubScoreQueryResponse_pubScores_inner]</a></span>  </div>
+<div class="param">error (optional)</div><div class="param-desc"><span class="param-type"><a href="#Error">Error</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="PubScoreQueryResponse_pubScores_inner"><code>PubScoreQueryResponse_pubScores_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">pubScore (optional)</div><div class="param-desc"><span class="param-type"><a href="#PubScore">PubScore</a></span>  </div>
+<div class="param">response (optional)</div><div class="param-desc"><span class="param-type"><a href="#Response">Response</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="PubScoreResponse"><code>PubScoreResponse</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">userScore (optional)</div><div class="param-desc"><span class="param-type"><a href="#PubScore">PubScore</a></span>  </div>
+<div class="param">response (optional)</div><div class="param-desc"><span class="param-type"><a href="#Response">Response</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Response"><code>Response</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">code </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">OK</div><div class="param-enum">ERR_NOT_ATTACHABLE</div><div class="param-enum">ERR_WRONG_REASSSESSMENT</div><div class="param-enum">ERR_WRONG_QUARTILE</div><div class="param-enum">ERR_WRONG_MULTIPLY</div><div class="param-enum">ERR_NOT_FOUND</div><div class="param-enum">ERR_GENERIC</div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="UserScore"><code>UserScore</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">userId </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">score </div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span> User score. In case the error the score is set to -1 format: double</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="UserScoreQueryRequest"><code>UserScoreQueryRequest</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">userIds </div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="UserScoreQueryResponse"><code>UserScoreQueryResponse</code> - UserScoreQueryResponse</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">userScores </div><div class="param-desc"><span class="param-type"><a href="#UserScoreQueryResponse_userScores_inner">array[UserScoreQueryResponse_userScores_inner]</a></span>  </div>
+<div class="param">error (optional)</div><div class="param-desc"><span class="param-type"><a href="#Error">Error</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="UserScoreQueryResponse_userScores_inner"><code>UserScoreQueryResponse_userScores_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">userScore (optional)</div><div class="param-desc"><span class="param-type"><a href="#UserScore">UserScore</a></span>  </div>
+<div class="param">response (optional)</div><div class="param-desc"><span class="param-type"><a href="#Response">Response</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="UserScoreResponse"><code>UserScoreResponse</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">userScore (optional)</div><div class="param-desc"><span class="param-type"><a href="#UserScore">UserScore</a></span>  </div>
+<div class="param">response (optional)</div><div class="param-desc"><span class="param-type"><a href="#Response">Response</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="pubScore_200_response"><code>pubScore_200_response</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">userScore (optional)</div><div class="param-desc"><span class="param-type"><a href="#PubScore">PubScore</a></span>  </div>
+<div class="param">response (optional)</div><div class="param-desc"><span class="param-type"><a href="#Response">Response</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>
