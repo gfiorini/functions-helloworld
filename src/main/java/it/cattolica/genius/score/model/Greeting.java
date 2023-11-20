@@ -1,4 +1,4 @@
-package com.example.model;
+package it.cattolica.genius.score.model;
 
 public class Greeting {
 

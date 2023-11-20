@@ -25,7 +25,7 @@
         <azure.functions.java.library.version>3.0.0</azure.functions.java.library.version>
         <spring.cloud.function.dependencies>4.0.0</spring.cloud.function.dependencies>
         <functionAppName>fn-app-hello-world</functionAppName>
-        <start-class>com.example.DemoApplication</start-class>
+        <start-class>it.cattolica.genius.score.Application</start-class>
 
         <functionResourceGroup>my-spring-function-resource-group</functionResourceGroup>
         <functionAppServicePlanName>my-spring-function-service-plan</functionAppServicePlanName>

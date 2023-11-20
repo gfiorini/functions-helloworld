@@ -1,7 +1,8 @@
-package com.example;
+package it.cattolica.genius.score;
 
-import com.example.model.Greeting;
-import com.example.model.User;
+
+import it.cattolica.genius.score.model.Greeting;
+import it.cattolica.genius.score.model.User;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 

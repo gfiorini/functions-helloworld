@@ -1,8 +1,10 @@
 package com.example;
 
-import com.example.model.Greeting;
-import com.example.model.User;
+
 import com.microsoft.azure.functions.ExecutionContext;
+import it.cattolica.genius.score.Hello;
+import it.cattolica.genius.score.model.Greeting;
+import it.cattolica.genius.score.model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.cloud.function.adapter.azure.FunctionInvoker;
 import reactor.core.publisher.Mono;

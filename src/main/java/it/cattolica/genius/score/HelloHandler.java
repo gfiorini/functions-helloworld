@@ -1,11 +1,12 @@
-package com.example;
+package it.cattolica.genius.score;
 
-import com.example.model.Greeting;
-import com.example.model.User;
+
 import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
+import it.cattolica.genius.score.model.Greeting;
+import it.cattolica.genius.score.model.User;
 import org.springframework.cloud.function.adapter.azure.FunctionInvoker;
 
 import java.util.Optional;
