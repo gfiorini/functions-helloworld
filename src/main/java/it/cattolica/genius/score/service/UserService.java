@@ -9,10 +9,6 @@ import reactor.core.publisher.Mono;
 public class UserService {
 
 
-    public String saveUser(UserDTO user) {
-        return user.getUserId();
-    }
-
     public UserDTO getUser(String userId) {
         return UserDTO.builder().userId(userId).build();
     }
