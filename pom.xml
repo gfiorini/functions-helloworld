@@ -104,7 +104,11 @@
             <artifactId>commons-text</artifactId>
             <version>1.10.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
         <!-- TBV -->
         <dependency>
             <groupId>javax.validation</groupId>
@@ -121,7 +125,6 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.1</version>
         </dependency>
-
 
         <!-- Test -->
         <dependency>

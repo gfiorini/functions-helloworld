@@ -1,21 +1,22 @@
 package it.cattolica.genius.score.model;
 
+import lombok.*;
+
+import java.time.ZonedDateTime;
+
+
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Getter
+@ToString
 public class User {
 
-    private String name;
 
-    public User() {
-    }
-
-    public User(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    private String userId;
+    private String lastName;
+    private String firstName;
+    private String email;
+    private ZonedDateTime createdOn;
 }

@@ -1,4 +1,4 @@
-package it.cattolica.genius.score;
+package it.cattolica.genius.score.function;
 
 
 import com.microsoft.azure.functions.*;
@@ -11,18 +11,15 @@ import org.springframework.cloud.function.adapter.azure.FunctionInvoker;
 
 import java.util.Optional;
 
-public class HelloHandler extends FunctionInvoker<User, Greeting> {
+public class HelloFunction extends FunctionInvoker<User, Greeting> {
 
     @FunctionName("hello")
     public HttpResponseMessage execute(
             @HttpTrigger(name = "request", methods = {HttpMethod.GET, HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<User>> request,
             ExecutionContext context) {
         User user = request.getBody()
-                .filter((u -> u.getName() != null))
-                .orElseGet(() -> new User(
-                        request.getQueryParameters()
-                                .getOrDefault("name", "world")));
-        context.getLogger().info("Oggi è un gran giorno: " + user.getName() + "!");
+                .filter((u -> u.getFirstName() != null))
+                .orElseGet(User::new);
         return request
                 .createResponseBuilder(HttpStatus.OK)
                 .body(handleRequest(user, context))
